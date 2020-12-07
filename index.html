@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">  
+  <title>Список контактов</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://ru.vuejs.org/images/icons/favicon-32x32.png">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app" v-cloak>
+    <h1>Список контактов</h1>
+    <ul class="contact-list-container">
+      <li class="contact-list-item" v-for="(item, index) in contactList" :key="item.name" @click="selectContact(index)">
+        <div class="name">{{item.name}}</div>
+        <div class="mini-button" title="Редактировать контакт" @click="editContact(item.name, item.other, index)"><i class="fas fa-pen"></i></div>
+        <p v-if="index == selectedContact">{{item.other}}</p>
+      </li>
+    </ul>
+    <div class="mini-button" title="Добавить контакт" @click="editWindowOpen = true, editMode = false"><i class="fas fa-plus"></i></div>
+    <div class="dark-back" v-if="editWindowOpen" @click.self="closeEdit()">
+      <div class="input-edit-area block-design">
+        <div class="mini-button" title="Закрыть" @click="closeEdit()"><i class="fas fa-times"></i></div>
+        <h2>{{editMode? 'Редактирование' : 'Создание'}} контакта</h2>
+        <div class="info-item">
+          <span>Имя</span>
+          <input type="text" name="name" v-model="editContactName" autofocus placeholder="Введите имя">
+        </div>
+        <ul class="values-list-container">
+          <li v-for="valueItem in editContactData" class="values-list-item info-item">
+            <input type="text" name="name" v-model="valueItem.head" placeholder="Название">
+            <input type="text" name="name" v-model="valueItem.body" placeholder="Значение">
+          </li>
+        </ul>
+        <div class="mini-button inline" title="Добавить контакт" @click="addOtherInputArea()"><i class="fas fa-plus"></i></div>
+        <div class="bea-button" @click="saveOrEdit()">Сохранить</div>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>
