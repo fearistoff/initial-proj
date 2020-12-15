@@ -1,10 +1,10 @@
 /* основное */
 * {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
 }
 
 /* перед рендером скрыть */
@@ -29,12 +29,20 @@ h2 {
   font-size: 20px;
   padding-bottom: 10px;
 }
+
+h3 {
+  text-align: center;
+  font-size: 18px;
+}
+
 /* фундаментальный стиль для блоков */
 .block-design {
   background-color: #ffffff;
   border-radius: 15px;
   padding: 20px;
+  box-shadow: 5px 5px 5px 0px #00000080;
 }
+
 /* стиль для кнопок */
 .bea-button {
   padding: 0.5em;
@@ -52,6 +60,7 @@ h2 {
 .bea-button:hover {
   background-color: #00ffaa;
 }
+
 /* стиль для полей ввода*/
 input[type="text"] {
   padding: 0.5em;
@@ -68,6 +77,7 @@ input[type="text"] {
   border-bottom: 1px solid #d4d4d4;
   position: relative;
   cursor: pointer;
+  list-style: none;
 }
 
 .contact-list-item .name {
@@ -84,11 +94,50 @@ input[type="text"] {
   height: 30px;
   width: 30px;
   background-color: #7fffd4;
-  text-align: center;
-  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s linear, transform ease 0.4s, opacity linear 0.4s;
+}
+
+.mini-button:hover {
+  background-color: #00ffaa;
+}
+
+.mini-button.add, .mini-button.undo, .mini-button.edit {
+  top: initial;
+  bottom: 10px;
+  height: 50px;
+  width: 50px;
+  box-shadow: 5px 5px 5px 0px #00000080;
+}
+
+.mini-button.undo {
+  left: 10px;
+  right: initial;
+  z-index: 1;
+}
+
+.mini-button.add > i, .mini-button.undo > i {
+  font-size: 22px
+}
+
+.mini-button.edit {
+  right: 10px;
+  bottom: 70px;
+  z-index: 1;
+}
+
+.mini-button.edit.on {
+  background-color: #ff7f7f;
+}
+
+.mini-button.delete {
+  background-color: #ff7f7f;
 }
 
 .dark-back {
@@ -101,6 +150,7 @@ input[type="text"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #00000080;
 }
 
 .input-edit-area {
@@ -117,11 +167,10 @@ input[type="text"] {
 
 .mini-button.inline {
   position: unset;
-  display: inline-block;
 }
 
 .values-list-container {
-  max-height: 700px;
+  max-height: 500px;
   overflow: auto;
 }
 
@@ -137,6 +186,16 @@ input[type="text"] {
 
 .info-item input:first-child {
   text-align: start;
+}
+
+.contact-list-container {
+  overflow: auto;
+  height: calc(100% - 55px);
+}
+
+.contact-list-item p {
+  font-size: 12px;
+  color: #808080;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -172,12 +231,22 @@ input[type="text"] {
   .mini-button {
     background-color: #483d8b;
   }
+
+  .mini-button:hover {
+    background-color: #7365d3;
+  }
 }
 
 @media screen and (min-width: 800px) {
   #app {
     width: 400px;
-    height: 600px;
+    height: 720px;
     margin: auto;
+    position: relative;
+    border: 1px solid #d4d4d4;
+    border-radius: 25px;
+    transform: translate(0, 100px);
+    overflow: hidden;
+    box-shadow: 5px 5px 10px 2px #00000080;
   }
 }
